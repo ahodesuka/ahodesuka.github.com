@@ -48,8 +48,10 @@
     }
     window.onload = function()
     {
-        console.log("AS: calling populateFontList");
-        document.getElementById("fontListSWF").populateFontList();
+        document.body.innerHTML += '<object id="fontListSWF" type="application/x-shockwave-flash" data="FontList.swf" width="100" height="100">\
+        <param name="allowScriptAccess" value="always">\
+        \
+        </object>';
     }
     </script>
 </head>
@@ -70,7 +72,4 @@
         </td>
     </tr>
 </table>
-<object id="fontListSWF" type="application/x-shockwave-flash" data="FontList.swf" width="100" height="100">
-    <param name="allowScriptAccess" value="always">
-</object>
 </body>
