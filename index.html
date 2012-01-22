@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Font List Example</title>
+	<meta charset="utf-8" />
+    <script type="text/javascript">
+    function populateFontList(fontArr)
+    {
+        var allFontsCounter = 0;
+        var regularFontsCounter = 0;
+        var allFontsHTML = '<ul>';
+        var regularFontsHTML = allFontsHTML;
+        
+        for (var key in fontArr)
+        {
+            var fontName = fontArr[key];
+            
+            // trim
+            fontName = fontName.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+            
+            if (fontName.match(/[_\-\s]Italic$/)
+                || fontName.match(/[_\-\s](Demi)?[Bb]old$/)
+                || fontName.match(/[_\-\s]Medium$/)
+                || fontName.match(/[_\-\s](Ultra)?[Ll]ight$/)
+                || fontName.match(/[_\-\s]Condensed$/)
+                )
+                allFontsHTML += '<li style="color:#aaa;">'+fontName+'</li>';
+            else
+            {
+                allFontsHTML += '<li>'+fontName+'</li>';
+                fontName = fontName.replace(/\s*Regular$/, '');
+                regularFontsHTML += '<li>'+fontName+'</li>';
+                regularFontsCounter++;
+            }
+            
+            allFontsCounter++;
+        }
+        
+        regularFontsHTML += '</ul>';
+        allFontsHTML += '</ul>';
+        allFontsHTML = allFontsCounter+' fonts altogether:'+allFontsHTML;
+        regularFontsHTML = regularFontsCounter+' "regular" fonts:'+regularFontsHTML;
+        
+        document.getElementById('fontList').innerHTML = allFontsHTML;
+        document.getElementById('regularFontList').innerHTML = regularFontsHTML;
+    }
+    </script>
+</head>
+<body>
+<table style="width:100%;">
+    <tr>
+        <td style="vertical-align: top;">
+            <h2>All Fonts:</h2>
+            <div id="fontList">
+            Listing not done yet... <em>(make sure Javascript and Flash are enabled)</em>
+            </div>
+        </td>
+        <td style="vertical-align: top;">
+            <h2>"Regular" Fonts:</h2>
+            <div id="regularFontList">
+            Listing not done yet... <em>(make sure Javascript and Flash are enabled)</em>
+            </div>
+        </td>
+    </tr>
+</table>
+<object id="fontListSWF" name="fontListSWF" type="application/x-shockwave-flash" data="FontList.swf" width="100" height="100">
+    <param name="movie" value="FontList.swf">
+	<embed src="FontList.swf" width="1" height="1"></embed>
+</object>
+</body>
